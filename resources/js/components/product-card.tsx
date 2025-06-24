@@ -46,7 +46,7 @@ export default function ProductCard({ product }: { product: Product }) {
         className="hover:opacity-90 transition"
       >
         <img
-          src={`/storage/products/${product.image}`}
+          src={`${product.image}`}
           alt={product.name}
           className="w-full h-56 object-cover rounded-md"
         />

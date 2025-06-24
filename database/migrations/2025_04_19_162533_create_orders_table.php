@@ -18,8 +18,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('address');
             $table->string('postal_code');
-            $table->enum('status', ['failed', 'pending', 'completed'])->default('failed');
-            $table->string('authority')->nullable();
+            $table->enum('status', ['failed', 'pending', 'complete'])->default('failed');
             $table->timestamps();
         });
     }

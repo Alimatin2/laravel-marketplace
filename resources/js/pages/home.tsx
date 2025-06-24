@@ -10,7 +10,7 @@ import TextLink from "@/components/text-link";
 import { buttonVariants } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Input } from "@/components/ui/input";
-import HomeLayout from "@/layouts/app/home-layout";
+import HomeLayout from "@/layouts/home-layout";
 import { Product } from "@/types";
 import { Link, usePage } from "@inertiajs/react";
 import { ShoppingCart } from "lucide-react";

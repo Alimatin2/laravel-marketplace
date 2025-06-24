@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('stock');
             $table->string('image');
             $table->integer('discount')->nullable();
+            $table->foreignId('vendor_id')->constrained('vendors');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

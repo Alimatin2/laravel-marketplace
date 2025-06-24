@@ -6,6 +6,7 @@ import AppLogo from "./app-logo";
 import { buttonVariants } from "./ui/button";
 import { SharedData } from "@/types";
 import Cart from "./cart";
+import WalletButton from "./wallet-button";
 export default function Header() {
   const page = usePage<SharedData>();
   const { auth } = page.props;
@@ -20,9 +21,12 @@ export default function Header() {
         <div className="flex gap-4 items-center">
           <Cart />
           { auth.user ?
-          <Link href={route('register')} className={buttonVariants({variant: 'outline'})}>
-            Dashboard
-          </Link>  
+          <div className="flex items-center gap-2">
+            <WalletButton />
+            <Link href={route('dashboard')} className={buttonVariants({variant: 'outline'})}>
+              Dashboard
+            </Link> 
+          </div>
           :
           <div className="flex gap-2">
             <Link href={route('login')} className={buttonVariants({variant: 'default'})}>

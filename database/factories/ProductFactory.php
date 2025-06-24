@@ -19,9 +19,12 @@ class ProductFactory extends Factory
         return [
             'name' => fake()->name(),
             'description' => fake()->sentence(),
-            'price' => fake()->randomFloat(2, 1, 100),
+            'price' => fake()->randomFloat(2, 1, 100) * 10000,
             'stock' => fake()->numberBetween(0, 100),
             'image' => fake()->imageUrl(),
+            'discount' => fake()->numberBetween(0,100),
+            'vendor_id' => fake()->numberBetween(1,5),
+            'is_active' => fake()->boolean(),
         ];
     }
 }

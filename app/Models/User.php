@@ -46,4 +46,39 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function vendors()
+    {
+        return $this->hasMany(Vendor::class, 'owner_id');
+    }
+
+    public function vendorMembers()
+    {
+        return $this->hasMany(VendorMember::class);
+    }
+
+    public function vendorInvitation()
+    {
+        return $this->hasMany(VendorInvitation::class);
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
 }
