@@ -3,14 +3,7 @@
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\Vendor\VendorBookingsController;
 use App\Http\Controllers\Vendor\VendorController;
-use App\Http\Controllers\Vendor\VendorInvitationController;
-use App\Http\Controllers\Vendor\VendorOrdersController;
-use App\Http\Controllers\Vendor\VendorProductController;
-use App\Http\Controllers\Vendor\VendorReservationController;
-use App\Http\Controllers\Vendor\VendorUserController;
-use App\Http\Middleware\VendorCreationMiddleware;
 use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;

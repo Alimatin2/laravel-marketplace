@@ -59,5 +59,13 @@ class VendorReservationController extends Controller
 
         return to_route('seller.reservations', ['vendor' => $vendor])->with('success', 'Reservation updated.');
     }
+
+    public function indexBookings(Vendor $vendor)
+    {
+        return Inertia::render('seller/bookings/index', [
+            'bookings' => $this->vendors->getBookings($vendor),
+            'vendor' => $vendor
+        ]);
+    }
 }
 

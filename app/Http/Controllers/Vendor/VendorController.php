@@ -27,12 +27,13 @@ class VendorController extends Controller
     public function create(Request $request)
     {
         return Inertia::render('dashboard/seller/create', [
-            'status' => $request->session()->get('status')
+            'status' => $request->session()->get('status') //Status used when user already owns a vendor
         ]);
     }
 
     public function store(StoreVendorRequest $request)
     {
+        //This function runs through the vendor creation middleware
         $validated = $request->validated();
 
         $vendor = $this->vendorService->create($validated);

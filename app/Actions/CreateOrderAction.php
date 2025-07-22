@@ -16,8 +16,8 @@ class CreateOrderAction
   ){}
 
   public function handle(array $data)
-  {                       
-    $order_data = Arr::except($data, ['order']);
+  {
+    $order_data = Arr::except($data, ['order']); //exclude order items
     $order = $this->orders->create(auth()->user(), $order_data);
 
     $order_details = json_decode($data['order'], true);

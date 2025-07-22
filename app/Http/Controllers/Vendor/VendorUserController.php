@@ -6,6 +6,7 @@ use App\Events\NotificationEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\InviteVendorMemberRequest;
 use App\Models\Vendor;
+use App\Models\VendorInvitation;
 use App\Repositories\VendorRepository;
 use App\Services\VendorService;
 use Illuminate\Http\Request;
@@ -51,5 +52,11 @@ class VendorUserController extends Controller
         event(new NotificationEvent($invitation, $invitation->user_id));
 
         return to_route('dashboard');
+    }
+    public function accept(VendorInvitation $vendor_invitation)
+    {
+        $this->vendorService->createMember($vendor_invitation);
+
+        return to_route('notifications');
     }
 }

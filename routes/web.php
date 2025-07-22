@@ -1,17 +1,12 @@
 <?php
 
-use App\Http\Controllers\AdminOrderController;
-use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReservationController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\WalletController;
-use App\Http\Middleware\AdminMiddleware;
 use App\Models\Order;
-use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 

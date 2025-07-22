@@ -42,11 +42,6 @@ class Vendor extends Model
         return $this->hasMany(VendorInvitation::class);
     }
 
-    public function products()
-    {
-        return $this->hasMany(Product::class);
-    }
-
     public function owner()
     {
         return $this->belongsTo(User::class, 'owner_id');

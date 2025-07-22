@@ -62,7 +62,7 @@ class VendorService
 
   public function createMember(VendorInvitation $vendorInvitation)
   {
-    $vendor = $vendorInvitation->vendor;
+    $vendor = $vendorInvitation->vendor()->first();
     $user = User::where('id', $vendorInvitation->user_id);
 
     $notification = Notification::where('reference_id', $vendorInvitation->id)

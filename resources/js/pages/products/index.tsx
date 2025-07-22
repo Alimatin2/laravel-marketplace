@@ -25,18 +25,19 @@ export default function Products() {
     return (
         <HomeLayout>
             <Head title="Products" />
-            <Breadcrumbs breadcrumbs={breadcrumbs} />       
+            <Breadcrumbs breadcrumbs={breadcrumbs} />
             <div className='flex flex-wrap gap-2 justify-center'>
             {
               products.map((product, i) => {
                 return(
                   <ProductCard
+                    key={i}
                     product={product}
                   />
                 );
               })
             }
-            </div>    
+            </div>
         </HomeLayout>
     );
 }

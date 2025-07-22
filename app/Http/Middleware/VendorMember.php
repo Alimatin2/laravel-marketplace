@@ -5,10 +5,9 @@ namespace App\Http\Middleware;
 use App\Models\Vendor;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 
-class VendorCreationMiddleware
+class VendorMember
 {
     /**
      * Handle an incoming request.
@@ -17,11 +16,10 @@ class VendorCreationMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = $request->user();
-        $vendor = Vendor::where('owner_id', $user->id)->first();
+        $vendor = Vendor::find($request->route('vendor'));
 
-        if($vendor) {
-            return back()->with('status', 'User already owns a vendor.');
+        if (!$vendor->members->contains($request->user())) {
+            return redirect()->route('dashboard.vendors');
         }
 
         return $next($request);

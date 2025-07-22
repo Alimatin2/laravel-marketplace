@@ -4,8 +4,9 @@ namespace App\Listeners;
 
 use App\Events\OrderVerified;
 use App\Repositories\ProductRepository;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class AdjustProductStock
+class AdjustProductStock implements ShouldQueue
 {
     /**
      * Create the event listener.

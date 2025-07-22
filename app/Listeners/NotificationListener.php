@@ -7,7 +7,7 @@ use App\Models\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class NotificationListener
+class NotificationListener implements ShouldQueue
 {
     /**
      * Create the event listener.
