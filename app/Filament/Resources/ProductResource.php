@@ -14,6 +14,7 @@ use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -50,9 +51,6 @@ class ProductResource extends Resource
                 ->maxValue(100),
                 Toggle::make('is_active')
                 ->default(true),
-                Select::make('vendor_id')
-                ->relationship('vendor', 'name')
-                ->required(),
             ]);
     }
 
@@ -60,7 +58,14 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name'),
+                TextColumn::make('price')
+                    ->sortable(),
+                TextColumn::make('stock')
+                    ->sortable(),
+                TextColumn::make('is_active')
+                    ->label('Active')
+                    ->sortable(),
             ])
             ->filters([
                 //
