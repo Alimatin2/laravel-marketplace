@@ -16,9 +16,10 @@ class VendorMember
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $vendor = Vendor::find($request->route('vendor'));
+        $vendor = Vendor::find($request->route('vendor'))->first();
+        $user = auth()->user();
 
-        if (!$vendor->members->contains($request->user())) {
+        if (!$user->vendors->contains('id', $vendor->id)) {
             return redirect()->route('dashboard.vendors');
         }
 

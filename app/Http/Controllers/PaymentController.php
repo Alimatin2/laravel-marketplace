@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\OrderVerified;
 use App\Models\Order;
+use App\Models\Payment;
 use App\Repositories\OrderRepository;
 use App\Repositories\PaymentRepository;
 use App\Services\ZarinpalService;
@@ -12,25 +13,25 @@ use Inertia\Inertia;
 
 class PaymentController extends Controller
 {
-    public function __construct(
-        protected PaymentRepository $payments,
-        protected ZarinpalService $zarinpal,
-        protected OrderRepository $orders,
-    ){}
+    protected ZarinpalService $zarinpal;
+    public function __construct(protected ZarinpalService $_zarinpal)
+    {
+        $this->zarinpal = $_zarinpal;
+    }
 
     public function verify(Request $request)
     {
         $responseData = $this->zarinpal->verify($request->Authority);
 
         if ($this->zarinpal->check($responseData)) {
-            $payment = $this->payments->getByAuthority($request->Authority);
+            $payment = Payment::where('authority', $request->Authority);
 
             if($payment->order_id) {
                 $order = $payment->order;
-                $this->orders->update($order, [
-                    'status' => 'pending',
+                $order->update([
+                    'status' => 'pending'
                 ]);
-                event(new OrderVerified($order));
+                dispatch(new OrderVerified($order));
             } else {
                 auth()->user()->increment('balance', $payment->price);
             }

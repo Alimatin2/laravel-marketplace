@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Events\OrderVerified;
+use App\Interface\IZarinpalService;
 use App\Repositories\OrderRepository;
 use App\Models\Order;
 use App\Models\Payment;
@@ -14,11 +15,6 @@ use Illuminate\Support\Facades\Http;
 
 class ZarinpalService
 {
-  public function __construct(
-    protected OrderRepository $orders,
-    protected PaymentRepository $payments
-  ){}
-
   public function create(Payment $payment)
   {
     $zarinpalResponse = Http::withHeaders([
@@ -41,7 +37,7 @@ class ZarinpalService
 
   public function verify(string $authority)
   {
-    $payment = $this->payments->getByAuthority($authority);
+    $payment = Payment::where('authority', $authority);
 
     $zarinpalResponse = Http::withHeaders([
       'Accept' => 'application/json',

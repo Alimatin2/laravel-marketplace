@@ -15,7 +15,6 @@ use Inertia\Inertia;
 class VendorUserController extends Controller
 {
     public function __construct(
-        protected VendorRepository $vendors,
         protected VendorService $vendorService,
     ){}
 
@@ -47,9 +46,9 @@ class VendorUserController extends Controller
     {
         $validated = $request->validated();
 
-        $invitation = $this->vendorService->inviteMember($vendor, $validated);
+        $invitation = $vendor->invitations()->create($validated);
 
-        event(new NotificationEvent($invitation, $invitation->user_id));
+        dispatch(new NotificationEvent($invitation, $invitation->user_id));
 
         return to_route('dashboard');
     }

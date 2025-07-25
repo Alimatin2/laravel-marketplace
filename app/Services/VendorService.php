@@ -12,26 +12,15 @@ use Illuminate\Validation\ValidationException;
 
 class VendorService
 {
-  public function __construct(
-      protected VendorRepository $vendors
-  ){}
-
-  public function getBySeller()
-  {
-    $user = auth()->user();
-    $vendors = $this->vendors->getBySeller($user);
-    return $vendors;
-  }
-
   public function create(array $data)
   {
     $user = auth()->user();
 
-    $vendor = $this->vendors->create(auth()->user(), $data);
+    $vendor = $user->vendors()->create($data);
 
-    $this->vendors->createMember($vendor, [
+    $vendor->members()->create([
       'user_id' => $user->id,
-      'email' => $user->email,
+      'email' => $user->email
     ]);
 
     $user->update([
@@ -54,9 +43,9 @@ class VendorService
 
     $user = User::where('email', $data['email'])->firstOrFail();
 
-    return $this->vendors->createInvitation($vendor, [
+    $vendor->invitations()->create([
       'user_id' => $user->id,
-      'email' => $data['email'],
+      'email' => $data['email']
     ]);
   }
 
@@ -69,15 +58,17 @@ class VendorService
         ->where('reference_type', VendorInvitation::class)
         ->first();
 
-    $vendor = $this->vendors->createMember($vendor, [
+    $vendor->members()->create([
       'user_id' => $user->id,
-      'email' => $vendorInvitation->user->email,
+      'email' => $user->email
     ]);
 
-    $this->vendors->updateInvitationStatus($vendorInvitation, 'accepted');
+    $vendorInvitation->update([
+      'status' => 'accepted',
+    ]);
 
-    $this->vendors->updateNotificationStatus($notification, [
-      'action_taken' => "Accepted",
+    $notification->update([
+      'action_taken' => 'Accepted',
     ]);
 
     $user->update([

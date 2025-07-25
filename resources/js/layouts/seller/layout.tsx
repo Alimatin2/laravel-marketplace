@@ -18,11 +18,6 @@ export default function SellerLayout({ children, vendor_id }: SellerLayoutProps)
         icon: null,
     },
     {
-        title: 'Products',
-        href: `/seller/${vendor_id}/products`,
-        icon: null,
-    },
-    {
         title: 'Reservations',
         href: `/seller/${vendor_id}/reservations`,
         icon: null,

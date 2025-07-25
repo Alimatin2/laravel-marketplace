@@ -11,9 +11,6 @@ class AdjustProductStock implements ShouldQueue
     /**
      * Create the event listener.
      */
-    public function __construct(
-        protected ProductRepository $products,
-    ){}
 
     /**
      * Handle the event.
@@ -22,7 +19,7 @@ class AdjustProductStock implements ShouldQueue
     {
         $order_details = $event->order->order_details;
         foreach($order_details as $order_detail){
-            $this->products->decreamentStock($order_detail->product, $order_detail->quantity);
+            $order_detail->product->decrement('stock', $order_detail->quantity);
         }
     }
 }

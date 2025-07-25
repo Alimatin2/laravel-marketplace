@@ -8,13 +8,9 @@ use Inertia\Inertia;
 
 class ProductController extends Controller
 {
-    public function __construct(
-        protected ProductRepository $products,
-    ){}
-
     public function index()
     {
-        $products = $this->products->getAllActiveSorted();
+        $products = Product::where('active', true);
 
         return Inertia::render('products/index', ['products' => $products]);
     }

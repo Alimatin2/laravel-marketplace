@@ -14,13 +14,12 @@ class VendorController extends Controller
 {
     public function __construct(
         protected VendorService $vendorService,
-        protected VendorRepository $vendors
     ){}
 
     public function index()
     {
         return Inertia::render('dashboard/seller/index', [
-            'vendors' => $this->vendorService->getBySeller(),
+            'vendors' => auth()->user()->vendors(),
         ]);
     }
 

@@ -14,11 +14,6 @@ use Inertia\Inertia;
 
 class VendorReservationController extends Controller
 {
-    public function __construct(
-        protected VendorRepository $vendors,
-        protected ReservationRepository $reservations,
-    ){}
-
     public function index(Vendor $vendor)
     {
         return Inertia::render('seller/reservations/index', [
@@ -38,7 +33,7 @@ class VendorReservationController extends Controller
     {
         $validated = $request->validated();
 
-        $this->vendors->createReservation($vendor, $validated);
+        $vendor->reservations()->create($validated);
 
         return to_route('seller.reservations', ['vendor' => $vendor])->with('success', 'Reservation created.');
     }
@@ -55,7 +50,7 @@ class VendorReservationController extends Controller
     {
         $validated = $request->validated();
 
-        $this->reservations->update($reservation, $validated);
+        $vendor->reservations()->update($validated);
 
         return to_route('seller.reservations', ['vendor' => $vendor])->with('success', 'Reservation updated.');
     }
@@ -63,7 +58,7 @@ class VendorReservationController extends Controller
     public function indexBookings(Vendor $vendor)
     {
         return Inertia::render('seller/bookings/index', [
-            'bookings' => $this->vendors->getBookings($vendor),
+            'bookings' => $vendor->bookings,
             'vendor' => $vendor
         ]);
     }

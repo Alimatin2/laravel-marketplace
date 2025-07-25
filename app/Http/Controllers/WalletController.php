@@ -12,7 +12,6 @@ class WalletController extends Controller
 {
     public function __construct(
         protected ZarinpalService $zarinpalService,
-        protected PaymentRepository $payments
     ){}
 
     public function show()
@@ -24,14 +23,16 @@ class WalletController extends Controller
     {
         $validated = $request->validated();
 
-        $payment = $this->payments->create(auth()->user(), [
+        $payment = auth()->user()->payments()->create([
             'price' => $validated['balance'],
         ]);
         
         $response = $this->zarinpalService->create($payment);
 
         if ($this->zarinpalService->check($response)) {
-            $this->payments->updateAuthority($payment, $response['data']['authority']);
+            $payment->update([
+                'authority' => $response['data']['authority']
+            ]);
 
             return Inertia::render('dashboard/checkout/create', [
             'order' => $response,

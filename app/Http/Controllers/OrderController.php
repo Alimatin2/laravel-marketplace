@@ -14,15 +14,16 @@ use App\Services\ZarinpalService;
 class OrderController extends Controller
 {
     public function __construct(
-        protected OrderRepository $orders,
         protected CreateOrderAction $createOrder,
         protected ZarinpalService $zarinpal
     ){}
 
     public function index()
     {
+        $orders = auth()->user()->orders;
+
         return Inertia::render('dashboard/orders/index', [
-            'orders' => $this->orders->getUserOrdersSorted(auth()->user()),
+            'orders' => $orders,
         ]);
     }
     public function show(Order $order)
@@ -43,8 +44,8 @@ class OrderController extends Controller
 
         if ($this->zarinpal->check($response)) {
             return Inertia::render('dashboard/checkout/create', [
-            'order' => $response,
-            'redirect_url' => "https://sandbox.zarinpal.com/pg/StartPay/" . $response['data']['authority'],
+                'order' => $response,
+                'redirect_url' => "https://sandbox.zarinpal.com/pg/StartPay/" . $response['data']['authority'],
             ]);
         } else {
             return Inertia::render('payment-failed', [

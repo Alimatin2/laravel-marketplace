@@ -11,10 +11,6 @@ use Inertia\Inertia;
 
 class BookingController extends Controller
 {
-    public function __construct(
-        protected BookingRepository $bookings,
-    ){}
-
     public function store(Reservation $reservation, StoreBookingRequest $request)
     {
         $validated = $request->validated();
@@ -29,8 +25,10 @@ class BookingController extends Controller
 
     public function index()
     {
+        $bookings = auth()->user()->bookings;
+
         return Inertia::render('dashboard/bookings/index', [
-            'bookings' => $this->bookings->getUserBookingsSorted(auth()->user()),
+            'bookings' => $bookings,
         ]);
     }
 }
