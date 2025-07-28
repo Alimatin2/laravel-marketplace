@@ -1,11 +1,11 @@
-import { NavFooter } from '@/components/nav-footer';
-import { NavMain } from '@/components/nav-main';
-import { NavUser } from '@/components/nav-user';
+import { NavFooter } from '@/components/structure/nav-footer';
+import { NavMain } from '@/components/structure/nav-main';
+import { NavUser } from '@/components/structure/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem, type SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
 import { ArrowBigLeft, BookOpen, Calendar, ClipboardCopy, Folder, LayoutGrid, List, Package, Settings, User } from 'lucide-react';
-import AppLogo from './app-logo';
+import AppLogo from '../brand/app-logo';
 
 export function AppSidebar() {
     const { auth, is_vendor_owner } = usePage<SharedData>().props;

@@ -1,5 +1,5 @@
 import { firstLetterUpperCase } from "@/helpers/first-letter-uppercase";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { act, ButtonHTMLAttributes } from "react";
 import { useForm } from "@inertiajs/react";
 

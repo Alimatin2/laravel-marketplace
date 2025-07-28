@@ -1,4 +1,4 @@
-import TextLink from "@/components/text-link";
+import TextLink from "@/components/text/text-link";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import AppLayout from "@/layouts/app-layout";
 import { IBooking, BreadcrumbItem, Order } from "@/types";

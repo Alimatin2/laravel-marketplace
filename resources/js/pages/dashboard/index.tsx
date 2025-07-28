@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { useInitials } from '@/hooks/use-initials';
-import TextLink from '@/components/text-link';
+import TextLink from '@/components/text/text-link';
 import { Package, ShoppingCart, User } from 'lucide-react';
 import AppLayout from '@/layouts/app-layout';
 

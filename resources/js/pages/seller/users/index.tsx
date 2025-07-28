@@ -1,4 +1,4 @@
-import TextLink from '@/components/text-link';
+import TextLink from '@/components/text/text-link';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';

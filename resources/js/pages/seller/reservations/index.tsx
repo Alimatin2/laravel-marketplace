@@ -1,6 +1,6 @@
 // resources/js/Pages/seller/reservations/index.tsx
 
-import TextLink from '@/components/text-link';
+import TextLink from '@/components/text/text-link';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import AppLayout from '@/layouts/app-layout';

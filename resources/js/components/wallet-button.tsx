@@ -1,6 +1,6 @@
 import { SharedData } from "@/types";
 import { usePage } from "@inertiajs/react";
-import TextLink from "./text-link";
+import TextLink from "./text/text-link";
 
 export default function WalletButton() {
   const { balance } = usePage<SharedData & {balance: number}>().props;

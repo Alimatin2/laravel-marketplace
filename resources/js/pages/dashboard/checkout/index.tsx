@@ -6,7 +6,7 @@ import { Head, Link, router, useForm } from "@inertiajs/react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import InputError from "@/components/input-error";
+import InputError from "@/components/ui/input-error";
 import AppLayout from "@/layouts/app-layout";
 
 const breadcrumbs: BreadcrumbItem[] = [

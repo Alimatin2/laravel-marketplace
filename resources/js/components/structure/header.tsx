@@ -1,12 +1,12 @@
 import { Link, usePage } from "@inertiajs/react";
-import TextLink from "./text-link";
+import TextLink from "../text/text-link";
 import { ShoppingCart } from "lucide-react";
-import { Input } from "./ui/input";
-import AppLogo from "./app-logo";
-import { buttonVariants } from "./ui/button";
+import { Input } from "../ui/input";
+import { buttonVariants } from "../ui/button";
 import { SharedData } from "@/types";
-import Cart from "./cart";
-import WalletButton from "./wallet-button";
+import Cart from "../cart";
+import WalletButton from "../wallet-button";
+import AppLogo from "../brand/app-logo";
 export default function Header() {
   const page = usePage<SharedData>();
   const { auth } = page.props;

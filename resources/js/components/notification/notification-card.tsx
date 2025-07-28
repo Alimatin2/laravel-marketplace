@@ -1,5 +1,5 @@
 import { Notification } from "@/types";
-import NotificationAction from "./notification-action";
+import NotificationAction from "./notification/notification-action";
 
 interface NotificationCardProps {
   notification: Notification;

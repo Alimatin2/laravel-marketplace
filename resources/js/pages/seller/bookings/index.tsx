@@ -1,4 +1,4 @@
-import TextLink from '@/components/text-link';
+import TextLink from '@/components/text/text-link';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuItem, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';

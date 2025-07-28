@@ -1,8 +1,8 @@
 import { cn } from '@/lib/utils';
 import { Link } from '@inertiajs/react';
-import { buttonVariants } from './ui/button';
+import { buttonVariants } from '../ui/button';
 import { ArrowRightIcon } from 'lucide-react';
-import TextLink from './text-link';
+import TextLink from '../text/text-link';
 
 interface BlockProps {
   header?: string;
