@@ -14,13 +14,13 @@ Route::get('/', [ProductController::class, 'index'])->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('checkout', function () {
-        return Inertia::render('dashboard/checkout/index');
+        return Inertia::render('checkout/index');
     })->name('checkout');
 
     Route::post('checkout/create', [OrderController::class, 'store'])->name('checkout.create');
 
     Route::get('checkout/create/{order}', function (Order $order) {
-        return Inertia::render('dashboard/checkout/create', ['order' => $order]);
+        return Inertia::render('checkout/create', ['order' => $order]);
     })->name('checkout.create.show');
 
     Route::get('payment/verify', [PaymentController::class, 'verify'])->name('payment.verify');

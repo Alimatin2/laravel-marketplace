@@ -1,8 +1,6 @@
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Product } from "@/types";
-import { Button } from "./ui/button";
 import { Link } from "@inertiajs/react";
-import { Check, CheckCircle, ShoppingCart } from "lucide-react";
+import { Check, ShoppingCart } from "lucide-react";
 import { useCart } from "@/context/cart-context";
 import { CartItem } from "@/types";
 import { useEffect } from "react";
@@ -46,7 +44,7 @@ export default function ProductCard({ product }: { product: Product }) {
         className="hover:opacity-90 transition"
       >
         <img
-          src={`${product.image}`}
+          src={`storage/${product.image}`}
           alt={product.name}
           className="w-full h-56 object-cover rounded-md"
         />

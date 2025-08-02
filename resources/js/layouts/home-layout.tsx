@@ -1,18 +1,6 @@
-import { AppContent } from "@/components/app-content";
-import { AppHeader } from "@/components/app-header";
-import AppLogo from "@/components/app-logo";
-import { AppShell } from "@/components/app-shell";
-import Block from "@/components/structure/block";
+import { AppShell } from "@/components/structure/app-shell";
 import Header from "@/components/structure/header";
-import MobileBottomNav from "@/components/mobile-bottom-nav";
-import ProductCard from "@/components/product-card";
-import TextLink from "@/components/text/text-link";
-import { buttonVariants } from "@/components/ui/button";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { Input } from "@/components/ui/input";
-import { Product } from "@/types";
-import { Link, usePage } from "@inertiajs/react";
-import { ShoppingCart } from "lucide-react";
+import MobileBottomNav from "@/components/structure/mobile-bottom-nav";
 
 export default function HomeLayout({ children }: { children: React.ReactNode }){
 

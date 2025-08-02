@@ -66,6 +66,8 @@ class ProductResource extends Resource
                 TextColumn::make('is_active')
                     ->label('Active')
                     ->sortable(),
+                TextColumn::make('order_details.quantity')
+                    ->sortable(),
             ])
             ->filters([
                 //

@@ -32,9 +32,9 @@ class OrderController extends Controller
             return redirect()->route('orders');
         }
 
-        return Inertia::render('dashboard/orders/show', [
-            'order' => $order->order_details,
-        ]);
+        $order_details = $order->order_details;
+
+        return Inertia::render('dashboard/orders/show', compact('order', 'order_details'));
     }
     public function store(StoreOrderRequest $request)
     {
@@ -43,7 +43,7 @@ class OrderController extends Controller
         $response = $this->createOrder->handle($validated);
 
         if ($this->zarinpal->check($response)) {
-            return Inertia::render('dashboard/checkout/create', [
+            return Inertia::render('checkout/create', [
                 'order' => $response,
                 'redirect_url' => "https://sandbox.zarinpal.com/pg/StartPay/" . $response['data']['authority'],
             ]);

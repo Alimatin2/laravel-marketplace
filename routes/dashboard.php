@@ -10,7 +10,7 @@ use Inertia\Inertia;
 
 Route::middleware(['auth', 'verified'])->group(function () {
   Route::get('dashboard', function () {
-      return Inertia::render('dashboard/index', [
+      return Inertia::render('dashboard', [
         'orders' => Order::where('user_id', auth()->user()->id)->get(),
       ]);
   })->name('dashboard');

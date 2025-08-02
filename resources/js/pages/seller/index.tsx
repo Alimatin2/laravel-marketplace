@@ -1,8 +1,8 @@
-import { SharedData, Vendor, type BreadcrumbItem } from '@/types';
-import { Head, usePage } from '@inertiajs/react';
 import HeadingSmall from '@/components/text/heading-small';
 import AppLayout from '@/layouts/app-layout';
 import SellerLayout from '@/layouts/seller/layout';
+import { SharedData, Vendor, type BreadcrumbItem } from '@/types';
+import { Head, usePage } from '@inertiajs/react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {

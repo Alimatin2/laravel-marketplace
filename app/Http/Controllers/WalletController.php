@@ -34,7 +34,7 @@ class WalletController extends Controller
                 'authority' => $response['data']['authority']
             ]);
 
-            return Inertia::render('dashboard/checkout/create', [
+            return Inertia::render('checkout/create', [
             'order' => $response,
             'redirect_url' => "https://sandbox.zarinpal.com/pg/StartPay/" . $response['data']['authority'],
             ]);
