@@ -1,3 +1,4 @@
+import StatusBadge from "@/components/order/status-badge";
 import TextLink from "@/components/text/text-link";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { firstLetterUpperCase } from "@/helpers/first-letter-uppercase";
@@ -43,12 +44,12 @@ export default function Orders() {
             </TableHeader>
             <TableBody>
               {
-                orders.map((order) => (
-                  <TableRow>
+                orders.map((order, i) => (
+                  <TableRow key={i}>
                     <TableCell>{order.id}</TableCell>
                     <TableCell>{order.total_price}</TableCell>
                     <TableCell>{new Date(order.created_at).toDateString()}</TableCell>
-                    <TableCell>{firstLetterUpperCase(order.status)}</TableCell>
+                    <TableCell><StatusBadge status={order.status}/></TableCell>
                     <TableCell>
                       <TextLink href={route('orders.show', order.id)}>
                         Details

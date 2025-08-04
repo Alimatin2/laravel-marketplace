@@ -1,10 +1,14 @@
-import InfoCol from "@/components/info-col";
+import InfoCol from "@/components/order/info-col";
+import OrderProgress from "@/components/order/progress";
+import StatusBadge from "@/components/order/status-badge";
 import Heading from "@/components/text/heading";
+import { Progress } from "@/components/ui/progress";
 import { Table, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { firstLetterUpperCase } from "@/helpers/first-letter-uppercase";
 import AppLayout from "@/layouts/app-layout";
 import { BreadcrumbItem, Order, OrderDetail } from "@/types";
 import { Head, usePage } from "@inertiajs/react";
+import { X } from "lucide-react";
 
 const breadcrumbs: BreadcrumbItem[] = [
   {
@@ -32,6 +36,7 @@ export default function OrderShow() {
       <Head title={`Order ${order.id}`} />
       <div className="p-4 space-y-4">
         <h2 className="text-xl font-bold">{`Order #${order.id}`}</h2>
+        <OrderProgress status={order.status}/>
         <div className="flex flex-wrap gap-10">
           <InfoCol
             title="Recipient"
