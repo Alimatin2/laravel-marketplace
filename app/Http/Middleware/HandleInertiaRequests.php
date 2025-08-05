@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Models\Notification;
 use App\Models\Vendor;
+use App\Models\VendorOwner;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -50,7 +51,7 @@ class HandleInertiaRequests extends Middleware
             ],
             'notification_count' => auth()->user() && Notification::where('user_id', auth()->id())->get()->count(),
             'balance' => auth()->user()?->balance,
-            'is_vendor_owner' => auth()->user() && Vendor::where('owner_id', auth()->id())->exists(),
+            'is_vendor_owner' => auth()->user() && VendorOwner::where('user_id', auth()->id())->exists(),
             'ziggy' => fn (): array => [
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),

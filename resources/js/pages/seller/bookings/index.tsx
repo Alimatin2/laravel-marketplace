@@ -9,7 +9,7 @@ import { MoreHorizontalIcon } from 'lucide-react';
 import { Head, usePage } from '@inertiajs/react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useState } from 'react';
-import SellerLayout from '@/layouts/seller/layout';
+import SellerLayout from '@/layouts/seller-layout';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {

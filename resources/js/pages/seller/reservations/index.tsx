@@ -4,7 +4,7 @@ import TextLink from '@/components/text/text-link';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import AppLayout from '@/layouts/app-layout';
-import SellerLayout from '@/layouts/seller/layout';
+import SellerLayout from '@/layouts/seller-layout';
 import { cn } from '@/lib/utils';
 import { Reservation, SharedData, Vendor, type BreadcrumbItem } from '@/types';
 import { Head, Link, usePage } from '@inertiajs/react';

@@ -1,6 +1,6 @@
 import HeadingSmall from '@/components/text/heading-small';
 import AppLayout from '@/layouts/app-layout';
-import SellerLayout from '@/layouts/seller/layout';
+import SellerLayout from '@/layouts/seller-layout';
 import { SharedData, Vendor, type BreadcrumbItem } from '@/types';
 import { Head, usePage } from '@inertiajs/react';
 
@@ -20,7 +20,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 export default function Seller() {
-  const { vendor } = usePage<SharedData & {vendor: Vendor}>().props;
+  const { vendor } = usePage<{vendor: Vendor}>().props;
 
   return (
       <AppLayout breadcrumbs={breadcrumbs}>
@@ -30,7 +30,7 @@ export default function Seller() {
               <div className="space-y-6">
                   <HeadingSmall title="Vendor Overview" description="Information about your vendor" />
                   <p>{vendor.name}</p>
-                  <p>{vendor.owner_name}</p>
+                  <p>{vendor.owner.name}</p>
               </div>
           </SellerLayout>
       </AppLayout>

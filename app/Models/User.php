@@ -47,17 +47,17 @@ class User extends Authenticatable
         ];
     }
 
+    public function vendor()
+    {
+        return $this->hasOneThrough(Vendor::class, VendorOwner::class, 'user_id', 'vendor_id');
+    }
+
     public function vendors()
     {
-        return $this->hasMany(Vendor::class, 'owner_id');
+        return $this->belongsToMany(Vendor::class, 'vendor_members');
     }
 
-    public function vendorMembers()
-    {
-        return $this->hasMany(VendorMember::class);
-    }
-
-    public function vendorInvitation()
+    public function vendor_invitations()
     {
         return $this->hasMany(VendorInvitation::class);
     }

@@ -2,7 +2,7 @@ import InputError from "@/components/ui/input-error";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import AppLayout from "@/layouts/app-layout";
-import SellerLayout from "@/layouts/seller/layout";
+import SellerLayout from "@/layouts/seller-layout";
 import { BreadcrumbItem, SharedData, Vendor } from "@/types";
 import { Head, useForm, usePage } from "@inertiajs/react";
 import { FormEventHandler } from "react";

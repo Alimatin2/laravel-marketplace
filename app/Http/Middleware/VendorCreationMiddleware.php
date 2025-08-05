@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Vendor;
+use App\Models\VendorOwner;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -18,10 +19,15 @@ class VendorCreationMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         $user = $request->user();
-        $vendor = Vendor::where('owner_id', $user->id)->first();
-
-        if($vendor) {
-            return back()->with('status', 'User already owns a vendor.');
+        $vendor = VendorOwner::where('user_id', $user->id)->get();
+        
+        if($vendor->toArray()) {
+            if($request->isMethod('GET')) {
+                return to_route('dashboard.vendors');
+            }
+            return response()->json([
+                'message' => 'User already owns a vendor!',
+            ], 403);
         }
 
         return $next($request);

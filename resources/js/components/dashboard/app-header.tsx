@@ -1,4 +1,3 @@
-import { Breadcrumbs } from '@/components/breadcrumbs';
 import { Icon } from '@/components/brand/icon';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
@@ -12,8 +11,9 @@ import { cn } from '@/lib/utils';
 import { type BreadcrumbItem, type NavItem, type SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
 import { ArrowBigLeft, BookOpen, Package, LayoutGrid, Menu, Search, User, ClipboardCopy, Settings } from 'lucide-react';
-import AppLogo from './app-logo';
 import AppLogoIcon from '../brand/app-logo-icon';
+import AppLogo from '../brand/app-logo';
+import { Breadcrumbs } from '../structure/breadcrumbs';
 
 const activeItemStyles = 'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100';
 

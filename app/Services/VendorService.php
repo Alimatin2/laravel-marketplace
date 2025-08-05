@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Vendor;
 use App\Models\VendorInvitation;
 use App\Models\VendorMember;
+use App\Models\VendorOwner;
 use App\Repositories\VendorRepository;
 use Illuminate\Validation\ValidationException;
 
@@ -16,15 +17,21 @@ class VendorService
   {
     $user = auth()->user();
 
-    $vendor = $user->vendors()->create($data);
+    $vendor = $user->vendor()->create($data);
 
     $vendor->members()->create([
       'user_id' => $user->id,
-      'email' => $user->email
+      'email' => $user->email,
+      'role' => 'owner'
+    ]);
+
+    VendorOwner::create([
+      'user_id' => $user->id,
+      'vendor_id' => $vendor->id
     ]);
 
     $user->update([
-      "role" => "seller"
+      "role" => "vendor_owner"
     ]);
 
     return $vendor;

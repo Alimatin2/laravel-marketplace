@@ -8,12 +8,9 @@ use App\Http\Middleware\VendorCreationMiddleware;
 use App\Http\Middleware\VendorMember;
 
 Route::middleware(['auth', 'verified'])->group(function () {
-  Route::get('/seller-form', [VendorController::class, 'create'])->name('seller.create');
+  Route::get('/seller-form', [VendorController::class, 'create'])->middleware([VendorCreationMiddleware::class])->name('seller.create');
 
   Route::post('/seller-form', [VendorController::class, 'store'])->middleware([VendorCreationMiddleware::class])->name('seller.store');
-
-
-
 
   Route::middleware([VendorMember::class])->group(function () {
     Route::get('/seller/{vendor}', [VendorController::class, 'show'])->name('seller.dashboard');

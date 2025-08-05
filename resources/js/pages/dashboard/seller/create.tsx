@@ -30,7 +30,7 @@ const breadcrumbs: BreadcrumbItem[] = [
   },
 ];
 
-export default function SellerForm({ status, error } : { status?: string, error?: string }) {
+export default function SellerForm() {
   const { data, setData, post, processing, errors, reset } = useForm<Required<VendorForm>>({
     name: "",
   });
@@ -54,10 +54,6 @@ export default function SellerForm({ status, error } : { status?: string, error?
           onChange={(e) => setData('name', e.target.value)}
         />
         <InputError message={errors.name} />
-        {
-          status &&
-          <p className="text-sm text-red-600 dark:text-red-400">{status}</p>
-        }
         <Button type="submit" disabled={processing}>Send request</Button>
       </form>
     </AppLayout>

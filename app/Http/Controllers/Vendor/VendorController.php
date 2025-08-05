@@ -18,16 +18,14 @@ class VendorController extends Controller
 
     public function index()
     {
-        return Inertia::render('dashboard/seller/index', [
-            'vendors' => auth()->user()->vendors(),
-        ]);
+        $vendors = auth()->user()->vendors()->with(['owner'])->get();
+            
+        return Inertia::render('dashboard/seller/index', compact('vendors'));
     }
 
     public function create(Request $request)
     {
-        return Inertia::render('dashboard/seller/create', [
-            'status' => $request->session()->get('status') //Status used when user already owns a vendor
-        ]);
+        return Inertia::render('dashboard/seller/create');
     }
 
     public function store(StoreVendorRequest $request)
@@ -35,13 +33,15 @@ class VendorController extends Controller
         //This function runs through the vendor creation middleware
         $validated = $request->validated();
 
-        $vendor = $this->vendorService->create($validated);
+        $this->vendorService->create($validated);
 
         return to_route('dashboard.vendors');
     }
 
     public function show(Vendor $vendor)
-    {
+    {  
+        $vendor->load(['owner']);
+
         return Inertia::render('seller/index', [
             'vendor' => $vendor,
         ]);

@@ -127,9 +127,9 @@ export interface PaymentResponse {
 export interface Vendor {
     id: number;
     name: string;
-    owner_id: number;
-    owner_name: string;
-    status: string;
+    owner: {
+        name: string;
+    }
     created_at: Date;
     updated_at: Date;
 }

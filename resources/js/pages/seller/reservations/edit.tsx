@@ -5,7 +5,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import AppLayout from '@/layouts/app-layout';
-import SellerLayout from '@/layouts/seller/layout';
+import SellerLayout from '@/layouts/seller-layout';
 import { BreadcrumbItem, Reservation, ReservationForm, SharedData, Vendor } from '@/types';
 import { Head, useForm, usePage } from '@inertiajs/react';
 

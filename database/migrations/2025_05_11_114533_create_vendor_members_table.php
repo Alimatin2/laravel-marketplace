@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('vendor_id')->constrained('vendors')->cascadeOnDelete();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('email');
+            $table->enum('role', ['member', 'owner'])->default('member');
             $table->timestamps();
         });
     }

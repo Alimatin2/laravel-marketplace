@@ -11,26 +11,8 @@ class Vendor extends Model
 
     protected $fillable = [
         'name',
-        'owner_id',
         'status'
     ];
-
-    protected $appends = ['owner_name'];
-
-    public function getOwnerNameAttribute()
-    {
-        return $this->owner->name;
-    }
-
-    // public function getUsersAttribute()
-    // {
-    //     $invitations = $this->invitations()->user;
-    //     $members = $this->members()->user;
-
-    //     $users = array_merge($invitations, $members);
-
-    //     return $users;
-    // }
 
     public function members()
     {
@@ -44,7 +26,7 @@ class Vendor extends Model
 
     public function owner()
     {
-        return $this->belongsTo(User::class, 'owner_id');
+        return $this->hasOne(VendorOwner::class);
     }
 
     public function reservations()
@@ -55,10 +37,5 @@ class Vendor extends Model
     public function bookings()
     {
         return $this->hasManyThrough(Booking::class, Reservation::class);
-    }
-
-    public function orders()
-    {
-        return $this->hasManyThrough(OrderDetail::class, Product::class);
     }
 }

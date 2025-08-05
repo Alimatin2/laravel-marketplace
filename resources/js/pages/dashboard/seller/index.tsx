@@ -43,7 +43,7 @@ export default function Vendors() {
                 <TableCell>{vendor.id}</TableCell>
                 <TableCell>{vendor.name}</TableCell>
                 <TableCell>{new Date(vendor.created_at).toDateString()}</TableCell>
-                <TableCell>{vendor.owner_name}</TableCell>
+                <TableCell>{vendor.owner.name}</TableCell>
                 <TableCell>
                   <TextLink href={route('seller.dashboard', vendor.id)}>
                     Details
