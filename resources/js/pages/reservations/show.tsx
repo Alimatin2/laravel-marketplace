@@ -1,5 +1,5 @@
-import { Breadcrumbs } from "@/components/breadcrumbs";
-import ReservationHourButton from "@/components/reservation-hour-button";
+import ReservationHourButton from "@/components/reservation/reservation-hour-button";
+import { Breadcrumbs } from "@/components/structure/breadcrumbs";
 import TextLink from "@/components/text/text-link";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";

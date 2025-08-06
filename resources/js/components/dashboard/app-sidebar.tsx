@@ -32,16 +32,10 @@ export function AppSidebar() {
             icon: Settings,
         },
         {
-            title: 'Admin',
-            href: '/admin',
-            icon: User,
-            isActive: auth.user.role === "admin",
-        },
-        {
             title: 'Seller',
             href: route('dashboard.vendors'),
             icon: User,
-            isActive: auth.user.role === "seller",
+            isActive: auth.user.role === "seller" || auth.user.role === "vendor_owner",
         },
     ];
 

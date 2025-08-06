@@ -23,10 +23,18 @@ export default function SellerReservations() {
     <AppLayout breadcrumbs={breadcrumbs}>
       <SellerLayout vendor_id={vendor.id}>
         <Head title="Reservations" />
-        <div className="flex flex-col gap-4 p-4">
-          <Link href={route('seller.reservations.create', { vendor: vendor.id })} className={cn(buttonVariants({ variant: 'default' }), 'w-fit')}>
-            <PlusIcon className="mr-2" /> Add Reservation
-          </Link>
+        <div className="p-4 space-y-4">
+          {/* Actions */}
+          <div className="flex gap-2">
+            <Link
+              href={route('seller.reservations.create', { vendor: vendor.id })}
+              className={cn(buttonVariants({ variant: 'outline' }), 'w-fit')}
+              >
+              <PlusIcon className="mr-2" />
+               Add Reservation
+            </Link>
+          </div>
+
 
           <Table>
             <TableCaption>Vendor Reservations</TableCaption>

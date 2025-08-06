@@ -23,7 +23,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/seller/{vendor}/r-{reservation}', [VendorReservationController::class, 'edit'])->name('seller.reservations.edit');
 
-    Route::post('/seller/{vendor}/r-{reservation}', [VendorReservationController::class, 'update'])->name('seller.reservations.update');
+    Route::put('/seller/{vendor}/r-{reservation}', [VendorReservationController::class, 'update'])->name('seller.reservations.update');
 
 
     Route::get('/seller/{vendor}/users', [VendorUserController::class, 'index'])->name('seller.users');

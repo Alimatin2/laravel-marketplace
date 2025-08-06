@@ -1,3 +1,4 @@
+import { ReservationForm } from '@/pages/seller/reservations/form';
 import { LucideIcon } from 'lucide-react';
 import type { Config } from 'ziggy-js';
 
@@ -134,21 +135,10 @@ export interface Vendor {
     updated_at: Date;
 }
 
-export interface Reservation {
-  id: number;
-  name: string;
-  summary: string;
-  description: string;
-  start: string;
-  end: string;
-  price: number;
-  duration: number;
-  session_duration: number;
-  off_days: string[];
-  status: boolean;
-  status: boolean;
-  created_at: string;
-  updated_at: string;
+export interface Reservation extends ReservationForm {
+    id: number;
+    created_at: string;
+    updated_at: string;
 }
 
 export interface InvitationAction {

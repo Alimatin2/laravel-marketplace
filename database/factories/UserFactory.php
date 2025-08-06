@@ -42,10 +42,10 @@ class UserFactory extends Factory
         ]);
     }
 
-    public function seller()
+    public function vendor_owner()
     {
         return $this->state(fn (array $attributes) => [
-            'role' => 'seller',
+            'role' => 'vendor_owner',
         ]);
     }
 }

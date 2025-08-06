@@ -1,4 +1,4 @@
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 interface ReservationHourButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   hour: string;

@@ -44,15 +44,14 @@ export default function SellerLayout({ children, vendor_id }: SellerLayoutProps)
   return (
       <div className="px-4 py-6">
           <div className="flex flex-col space-y-8 lg:flex-row lg:gap-12">
-              <aside className="w-full max-w-xl lg:w-48">
+            <aside className="w-full max-w-xl lg:w-48">
                 <NavMain items={sidebarNavItems} />
-              </aside>
+            </aside>
 
-              <Separator className="my-6 md:hidden" />
-
-              <div className="flex-1 md:max-w-2xl">
-                  <section className="max-w-xl space-y-12">{children}</section>
-              </div>
+            <Separator className="my-6 md:hidden" />
+            <div className="w-full">
+                {children}
+            </div>
           </div>
       </div>
   );

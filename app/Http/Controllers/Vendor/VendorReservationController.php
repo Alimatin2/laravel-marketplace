@@ -35,7 +35,7 @@ class VendorReservationController extends Controller
 
         $vendor->reservations()->create($validated);
 
-        return to_route('seller.reservations', ['vendor' => $vendor])->with('success', 'Reservation created.');
+        return to_route('seller.reservations', ['vendor' => $vendor]);
     }
 
     public function edit(Vendor $vendor, Reservation $reservation)

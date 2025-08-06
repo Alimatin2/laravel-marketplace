@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Vendor>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\VendorOwner>
  */
-class VendorFactory extends Factory
+class VendorOwnerFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,8 @@ class VendorFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->word(),
+            'user_id' => 1,
+            'vendor_id' => 1
         ];
     }
 }
