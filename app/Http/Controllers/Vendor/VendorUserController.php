@@ -20,24 +20,24 @@ class VendorUserController extends Controller
 
     public function index(Vendor $vendor)
     {
-        $invitations = $vendor->invitations;
-        $members = $vendor->members;
+        $members = $vendor->members()->with(['user'])->get();
 
-        $users = $invitations->merge($members);
-
-        foreach($users as $user) {
-            $user->user;
-        }
-
-        return Inertia::render('seller/users/index', [
+        return Inertia::render('seller/members/index', [
             'vendor' => $vendor,
-            'users' => $users,
+            'members' => $members,
         ]);
+    }
+
+    public function indexInvitations(Vendor $vendor)
+    {
+        $invitations = $vendor->invitations()->with(['user'])->get();
+
+        return Inertia::render('seller/invitations/index', compact('invitations', 'vendor'));
     }
 
     public function create(Vendor $vendor)
     {
-        return Inertia::render('seller/users/create', [
+        return Inertia::render('seller/invitations/create', [
             'vendor' => $vendor,
         ]);
     }
@@ -46,11 +46,11 @@ class VendorUserController extends Controller
     {
         $validated = $request->validated();
 
-        $invitation = $vendor->invitations()->create($validated);
+        $invitation = $this->vendorService->inviteMember($vendor, $validated);
 
-        dispatch(new NotificationEvent($invitation, $invitation->user_id));
+        event(new NotificationEvent($invitation, $invitation->user_id));
 
-        return to_route('dashboard');
+        return to_route('dashboard.vendors');
     }
     public function accept(VendorInvitation $vendor_invitation)
     {

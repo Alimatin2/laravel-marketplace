@@ -1,3 +1,4 @@
+import TableFallback from '@/components/structure/table-fallback';
 import TextLink from '@/components/text/text-link';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
@@ -8,70 +9,61 @@ import SellerLayout from '@/layouts/seller-layout';
 import { cn } from '@/lib/utils';
 import { Member, Product, SharedData, User, Vendor, type BreadcrumbItem } from '@/types';
 import { Head, Link, usePage } from '@inertiajs/react';
-import { PencilIcon, PlusIcon } from 'lucide-react';
+import { PencilIcon, PlusIcon, SquarePen, Trash2 } from 'lucide-react';
 
-//TODO breadcrumbs
+export default function SellerMembers() {
+    const { vendor, members } = usePage<SharedData & { vendor: Vendor, members: Member[]}>().props;
+    
+    const breadcrumbs: BreadcrumbItem[] = [
+      {
+          title: 'Dashboard',
+          href: '/dashboard',
+      },
+      {
+          title: 'Seller Panel',
+          href: `/seller/${vendor.id}`,
+      },
+      {
+          title: 'Members',
+          href: `/seller/${vendor.id}/members`,
+      },
+    ];
 
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Dashboard',
-        href: '/dashboard',
-    },
-    {
-        title: 'Seller Panel',
-        href: '/seller/{vendor}',
-    },
-    {
-        title: 'Products',
-        href: '/seller/{vendor}/products',
-    },
-];
-
-export default function SellerUsers() {
-    const { vendor, users } = usePage<SharedData & { vendor: Vendor, users: Member[]}>().props;
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
           <SellerLayout vendor_id={vendor.id}>
-
-            <Head title="Dashboard Products" />
-
-            <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-
-              <Link href={route('seller.users.create', {vendor: vendor.id})} className={cn(buttonVariants({ variant: 'default' }), 'w-fit')}>
+            <Head title="Vendor Members" />
+              <Link href={route('seller.invitations.create', {vendor: vendor.id})} className={cn(buttonVariants({ variant: 'outline' }), 'w-fit')}>
                 <PlusIcon />
                 Invite User
               </Link>
 
               <Table>
-                  <TableCaption>Products</TableCaption>
+                  <TableCaption>Members</TableCaption>
                   <TableHeader>
                       <TableRow>
                           <TableHead>ID</TableHead>
                           <TableHead>Name</TableHead>
                           <TableHead>Email</TableHead>
+                          <TableHead>Role</TableHead>
+                          <TableHead>Actions</TableHead>
                       </TableRow>
                   </TableHeader>
-
-                  <TableBody>
-                    {users.map((user: Member) => (
-                      <TableRow key={user.user.id}>
-                        <TableCell>{user.user.id}</TableCell>
-                        <TableCell>{user.user.name}</TableCell>
-                        <TableCell>{user.user.email}</TableCell>
-                        {
-                          user.status ?
-                          <TableCell>{firstLetterUpperCase(user.status)}</TableCell>
-                          :
-                          <TableCell>Member</TableCell>
-                        }
+                  <TableFallback count={members.length}>
+                    {members.map((member: Member, i) => (
+                      <TableRow key={i}>
+                        <TableCell>{member.id}</TableCell>
+                        <TableCell>{member.user.name}</TableCell>
+                        <TableCell>{member.email}</TableCell>
+                        <TableCell>{firstLetterUpperCase(member.role)}</TableCell>
+                        <TableCell className="flex gap-2">
+                          <SquarePen size={17} color='cyan'/>
+                          <Trash2 size={17} color='red'/>
+                        </TableCell>
                       </TableRow>
                     ))}
-                  </TableBody>
-
+                  </TableFallback>
               </Table>
-
-            </div>
-
           </SellerLayout>
 
         </AppLayout>

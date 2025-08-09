@@ -1,5 +1,6 @@
 // resources/js/Pages/seller/reservations/index.tsx
 
+import TableFallback from '@/components/structure/table-fallback';
 import TextLink from '@/components/text/text-link';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -34,8 +35,6 @@ export default function SellerReservations() {
                Add Reservation
             </Link>
           </div>
-
-
           <Table>
             <TableCaption>Vendor Reservations</TableCaption>
             <TableHeader>
@@ -48,7 +47,7 @@ export default function SellerReservations() {
                 <TableHead>Actions</TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody>
+            <TableFallback count={reservations.length}>
               {reservations.map((reservation) => (
                 <TableRow key={reservation.id}>
                   <TableCell>{reservation.id}</TableCell>
@@ -63,7 +62,7 @@ export default function SellerReservations() {
                   </TableCell>
                 </TableRow>
               ))}
-            </TableBody>
+            </TableFallback>
           </Table>
         </div>
       </SellerLayout>

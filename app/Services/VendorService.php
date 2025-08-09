@@ -50,16 +50,18 @@ class VendorService
 
     $user = User::where('email', $data['email'])->firstOrFail();
 
-    $vendor->invitations()->create([
+    $invitation = $vendor->invitations()->create([
       'user_id' => $user->id,
       'email' => $data['email']
     ]);
+
+    return $invitation;
   }
 
   public function createMember(VendorInvitation $vendorInvitation)
   {
     $vendor = $vendorInvitation->vendor()->first();
-    $user = User::where('id', $vendorInvitation->user_id);
+    $user = User::where('id', $vendorInvitation->user_id)->first();
 
     $notification = Notification::where('reference_id', $vendorInvitation->id)
         ->where('reference_type', VendorInvitation::class)

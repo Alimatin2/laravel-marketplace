@@ -26,18 +26,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/seller/{vendor}/r-{reservation}', [VendorReservationController::class, 'update'])->name('seller.reservations.update');
 
 
-    Route::get('/seller/{vendor}/users', [VendorUserController::class, 'index'])->name('seller.users');
+    Route::get('/seller/{vendor}/members', [VendorUserController::class, 'index'])->name('seller.members');
 
-    Route::get('/seller/{vendor}/users/invite', [VendorUserController::class, 'create'])->name('seller.users.create');
+    Route::get('/seller/{vendor}/invitations', [VendorUserController::class, 'indexInvitations'])->name('seller.invitations');
 
-    Route::post('/seller/{vendor}/users', [VendorUserController::class, 'store'])->name('seller.users.store');
+    Route::get('/seller/{vendor}/invite', [VendorUserController::class, 'create'])->name('seller.invitations.create');
 
-
-    Route::post('/seller/{vendor_invitation}/accept', [VendorUserController::class, 'accept'])->name('vendor.invitation.accept');
-
-    // Route::post('/seller/{vendor_invitation}/decline', [VendorInvitationController::class, 'decline'])->name('vendor.invitation.decline');
+    Route::post('/seller/{vendor}/invite', [VendorUserController::class, 'store'])->name('seller.invitations.store');
 
 
-    Route::get('/seller/{vendor}/bookings', [VendorReservationController::class, 'index'])->name('seller.bookings');
+    Route::get('/seller/{vendor}/bookings', [VendorReservationController::class, 'indexBookings'])->name('seller.bookings');
   });
+
+  Route::post('/seller/{vendor_invitation}/accept', [VendorUserController::class, 'accept'])->name('vendor.invitation.accept');
+
+  // Route::post('/seller/{vendor_invitation}/decline', [VendorInvitationController::class, 'decline'])->name('vendor.invitation.decline');
 });

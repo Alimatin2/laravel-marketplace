@@ -10,6 +10,7 @@ import { Head, usePage } from '@inertiajs/react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useState } from 'react';
 import SellerLayout from '@/layouts/seller-layout';
+import TableFallback from '@/components/structure/table-fallback';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -35,33 +36,29 @@ export default function VendorBookings() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
           <SellerLayout vendor_id={vendor.id}>
-            <Head title="Dashboard Orders" />
-            <div className="flex h-full flex-1 items-start flex-col gap-4 rounded-xl p-4">
-              <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                    <TableHead>Booking ID</TableHead>
-                    <TableHead>Price</TableHead>
-                    <TableHead>Date</TableHead>
-                    <TableHead>Time</TableHead>
-                    <TableHead>Created At</TableHead>
+            <Head title="Vendor Bookings" />
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                  <TableHead>Booking ID</TableHead>
+                  <TableHead>Price</TableHead>
+                  <TableHead>Date</TableHead>
+                  <TableHead>Time</TableHead>
+                  <TableHead>Created At</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableFallback count={bookings.length}>
+                {bookings.map((booking) => (
+                  <TableRow>
+                    <TableCell>{booking.id}</TableCell>
+                    <TableCell>{booking.price}</TableCell>
+                    <TableCell>{new Date(booking.date).toDateString()}</TableCell>
+                    <TableCell>{booking.time}</TableCell>
+                    <TableCell>{new Date(booking.created_at).toDateString()}</TableCell>
                   </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {bookings.map((booking) => (
-                    <TableRow>
-                      <TableCell>{booking.id}</TableCell>
-                      <TableCell>{booking.price}</TableCell>
-                      <TableCell>{new Date(booking.date).toDateString()}</TableCell>
-                      <TableCell>{booking.time}</TableCell>
-                      <TableCell>{new Date(booking.created_at).toDateString()}</TableCell>
-                    </TableRow>
-                  ))}
-                  </TableBody>
-                </Table>
-              </div>
-            </div>
+                ))}
+                </TableFallback>
+              </Table>
           </SellerLayout>
         </AppLayout>
     );

@@ -45,10 +45,25 @@ export interface User {
 }
 
 export interface Member {
+    id: number;
     vendor_id: number;
     user_id: number;
-    status: string | null;
+    role: string;
+    email: string;
     user: User;
+    created_at: string;
+    updated_at: string;
+}
+
+export interface Invitation {
+    id: number;
+    vendor_id: number;
+    user_id: number;
+    email: string;
+    user: User;
+    status: string;
+    created_at: string;
+    updated_at: string;
 }
 
 export interface Product {

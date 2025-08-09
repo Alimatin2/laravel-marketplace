@@ -8,7 +8,7 @@ import { useInitials } from '@/hooks/use-initials';
 import TextLink from '@/components/text/text-link';
 import { Package, ShoppingCart, User } from 'lucide-react';
 import AppLayout from '@/layouts/app-layout';
-import NotificationCard from '@/components/notification-card';
+import NotificationCard from '@/components/notification/notification-card';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
