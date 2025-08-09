@@ -14,8 +14,8 @@ const statusList: Record<StatusKey, Status> = {
   },
   pending: {
     text: "Pending",
-    forecolor: "text-yellow-300",
-    backcolor: "bg-yellow-900",
+    forecolor: "text-yellow-100",
+    backcolor: "bg-yellow-400",
   },
   complete: {
     text: "Complete",

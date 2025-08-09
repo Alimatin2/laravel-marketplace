@@ -24,14 +24,14 @@ class PaymentController extends Controller
         $responseData = $this->zarinpal->verify($request->Authority);
 
         if ($this->zarinpal->check($responseData)) {
-            $payment = Payment::where('authority', $request->Authority);
+            $payment = Payment::where('authority', $request->Authority)->first();
 
             if($payment->order_id) {
                 $order = $payment->order;
                 $order->update([
                     'status' => 'pending'
                 ]);
-                dispatch(new OrderVerified($order));
+                event(new OrderVerified($order));
             } else {
                 auth()->user()->increment('balance', $payment->price);
             }

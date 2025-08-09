@@ -24,7 +24,7 @@ const statusList: Record<StatusKey, Status> = {
   pending: {
     value: 60,
     icon: Loader,
-    color: "bg-yellow-500"
+    color: "bg-yellow-300"
   },
   complete: {
     value: 100,
@@ -44,7 +44,7 @@ export default function OrderProgress({ status }: OrderProgressProps) {
 
   return(
     <div className="flex gap-2 items-center backdrop-blur-2xl p-2 rounded-md">
-      <X color={currentStatus.color.split("-")[1]} size={17}/>
+      <currentStatus.icon color={currentStatus.color.split("-")[1]} size={17}/>
       <Progress value={currentStatus.value} bar_color={currentStatus.color} className="lg:w-1/2"/>
       <StatusBadge status={status}/>
     </div>

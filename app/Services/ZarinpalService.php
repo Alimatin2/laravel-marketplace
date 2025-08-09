@@ -37,7 +37,7 @@ class ZarinpalService
 
   public function verify(string $authority)
   {
-    $payment = Payment::where('authority', $authority)->get();
+    $payment = Payment::where('authority', $authority)->first();
 
     $zarinpalResponse = Http::withHeaders([
       'Accept' => 'application/json',
