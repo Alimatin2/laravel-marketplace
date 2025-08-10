@@ -1,9 +1,3 @@
-
-# Multi-Vendor E-commerce & Reservation System
-
-This project is mainly for educational purposes. Created using Laravel 12 React Starter Pack.
-
-
 ## Installation
 
 Clone the repository
