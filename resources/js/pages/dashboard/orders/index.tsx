@@ -1,4 +1,5 @@
 import StatusBadge from "@/components/order/status-badge";
+import TableFallback from "@/components/structure/table-fallback";
 import TextLink from "@/components/text/text-link";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { firstLetterUpperCase } from "@/helpers/first-letter-uppercase";
@@ -29,40 +30,34 @@ export default function Orders() {
       <AppLayout breadcrumbs={breadcrumbs}>
         <Head title="Orders" />
         <div className="flex h-full flex-1 flex-col items-center gap-4 rounded-xl p-4">
-          {
-            orders.length > 0 
-            ?
-            <Table>
-              <TableHeader>
-                <TableRow>
-                <TableHead>Order ID</TableHead>
-                <TableHead>Total Price</TableHead>
-                <TableHead>Order Date</TableHead>
-                <TableHead>Order Status</TableHead>
-                <TableHead>Details</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {
-                orders.map((order, i) => (
-                  <TableRow key={i}>
-                    <TableCell>{order.id}</TableCell>
-                    <TableCell>{order.total_price}</TableCell>
-                    <TableCell>{new Date(order.created_at).toDateString()}</TableCell>
-                    <TableCell><StatusBadge status={order.status}/></TableCell>
-                    <TableCell>
-                      <TextLink href={route('orders.show', order.id)}>
-                        Details
-                      </TextLink>
-                    </TableCell>
-                  </TableRow>
-                ))
-              }
-              </TableBody>
-            </Table>
-            :
-            <p>You have no orders.</p>
-          }
+          <Table>
+            <TableHeader>
+              <TableRow>
+              <TableHead>Order ID</TableHead>
+              <TableHead>Total Price</TableHead>
+              <TableHead>Order Date</TableHead>
+              <TableHead>Order Status</TableHead>
+              <TableHead>Details</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableFallback count={orders.length}>
+            {
+              orders.map((order, i) => (
+                <TableRow key={i}>
+                  <TableCell>{order.id}</TableCell>
+                  <TableCell>{order.total_price}</TableCell>
+                  <TableCell>{new Date(order.created_at).toDateString()}</TableCell>
+                  <TableCell><StatusBadge status={order.status}/></TableCell>
+                  <TableCell>
+                    <TextLink href={route('orders.show', order.id)}>
+                      Details
+                    </TextLink>
+                  </TableCell>
+                </TableRow>
+              ))
+            }
+            </TableFallback>
+          </Table>
         </div>
       </AppLayout>
     );

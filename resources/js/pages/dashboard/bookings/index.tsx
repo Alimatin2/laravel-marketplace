@@ -1,3 +1,4 @@
+import TableFallback from "@/components/structure/table-fallback";
 import TextLink from "@/components/text/text-link";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import AppLayout from "@/layouts/app-layout";
@@ -37,7 +38,7 @@ export default function Booking() {
               <TableHead>Created At</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody>
+          <TableFallback count={bookings.length}>
             {bookings.map((booking) => (
               <TableRow>
                 <TableCell>{booking.id}</TableCell>
@@ -47,7 +48,7 @@ export default function Booking() {
                 <TableCell>{new Date(booking.created_at).toDateString()}</TableCell>
               </TableRow>
             ))}
-            </TableBody>
+            </TableFallback>
           </Table>
         </div>
       </AppLayout>
